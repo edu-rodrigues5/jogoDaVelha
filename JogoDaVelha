@@ -1,0 +1,70 @@
+<html>
+<head>
+<script language="javascript">
+    var p, j = 1, num;
+    p = new Array(9);
+
+    num = new Array(2);
+
+
+    function clicou(b) {
+        if ((p[b-1] == 1 || p[b-1] == 2))
+            alert("Já está marcado");
+        else {
+            if(j == 1)
+            {
+                p[b-1] = 1;
+            
+                num[0] += b;
+
+            if(checar(num[0]) == true)
+            {
+                document.write("<h1>Jogador 1 ganhou</h1>")
+            }
+
+            document.getElementById("pos" + b).src = "xis.png";
+            j=2;
+            }
+            else
+            {
+                p[b-1] = 2;
+            
+                num[1] += b;
+
+            if(checar(num[1]) == true)
+            {
+                document.write("<h1>Jogador 2 ganhou</h1>");
+            }
+
+            document.getElementById("pos" + b).src = "bola.png";
+            j=1;
+            }
+        }
+    }
+
+    function checar(variavel){
+        const sequencias = ["123", "456", "789","147", "258", "369", "159", "357"];
+        return sequencias.includes(variavel);
+    }
+</script>
+</head>
+<body>
+<form>
+<script language="javascript">
+    
+    var  i;
+
+    document.write("<table border='1'><tr>");
+    for (i = 1; i <= 9; ++i) {
+        if (i % 3 == 0) {
+            document.write("<td><img width='30' height='30' src='vazio.png' id='pos" + i + "' onclick='clicou(" + i + ")'></td></tr><tr>");
+        } else {
+            document.write("<td><img width='30' height='30' src='vazio.png' id='pos" + i + "' onclick='clicou(" + i + ")'></td>");
+        }
+    }
+    document.write("</tr></table>");
+
+</script>
+</form>
+</body>
+</html>
